@@ -19,7 +19,7 @@
 -- MAGIC 
 -- MAGIC Requirements:
 -- MAGIC - Unity Catalog enabled Workspace
--- MAGIC - DBR 11.?
+-- MAGIC - DBR 11.1?
 -- MAGIC - DBSQL Preview?
 -- MAGIC - Hive Metastore is not supported
 -- MAGIC 
@@ -164,7 +164,31 @@ VALUES
 
 -- COMMAND ----------
 
+-- MAGIC %md ## 5/ Primary Key and Foreign Key in Data Explorer
+-- MAGIC 
+-- MAGIC * TODO - Add Gif
+
+-- COMMAND ----------
+
+-- MAGIC %md ## 6/ Primary Key and Foreign Key in DBSQL - Code Completion
+-- MAGIC 
+-- MAGIC * TODO - Add Gif
+
+-- COMMAND ----------
+
+SELECT
+  dim_product.*, fact_sales.price_sold, fact_sales.units_sold, fact_sales.dollar_cost,  dim_customer.*
+FROM
+  fact_sales
+  INNER JOIN dim_product ON fact_sales.product_key = dim_product.product_key
+  INNER JOIN dim_customer ON fact_sales.customer_key = dim_customer.customer_key;
+
+-- COMMAND ----------
+
 -- DBTITLE 1,Clean Up
 -- MAGIC %python
 -- MAGIC  spark.sql(f"DROP CATALOG {catalog} CASCADE")
+
+-- COMMAND ----------
+
 
